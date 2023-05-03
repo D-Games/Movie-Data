@@ -33,3 +33,26 @@ let movieData = {
       cast: ["Ralph Fiennes", "F. Murray Abraham", "Mathieu Amalric"],
     },
   };
+
+  function populateTable() {
+    const table = document.querySelector('#movie-table tbody');
+    
+    for (let title in movieData) {
+      const movie = movieData[title];
+      const row = table.insertRow();
+      const titleCell = row.insertCell();
+      const yearCell = row.insertCell();
+      const plotCell = row.insertCell();
+      const castCell = row.insertCell();
+      const runtimeCell = row.insertCell();
+      const ratingCell = row.insertCell();
+      
+  
+      titleCell.textContent = title;
+      plotCell.textContent = movie.plot;
+      castCell.textContent = movie.cast.join(', ');
+      runtimeCell.textContent = movie.runtime;
+      ratingCell.textContent = movie.rating;
+      yearCell.textContent = movie.year;
+    }
+  }

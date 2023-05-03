@@ -9,9 +9,16 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/movieData.css">
-    <script src="js/main.js" defer></script>
+    <script src="js/movieData.js"></script>
+
+    <script>
+        window.addEventListener('load', function(){
+          populateTable();
+        });
+      </script>
 </head>
 <body>
+
 
     <div class="header-container" style="flex-direction: column;">
         <div class="inner-header">
@@ -31,8 +38,35 @@
             </ul>
         </div>
     </div>
-    
-    <div class="spacer"></div>
+    <div class="table-container">
+        <table id="movie-table" class="movie-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Year</th>
+                    <th>Plot</th>
+                    <th>Cast</th>
+                    <th>Runtime</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button class="add-movie">Add Movie</button>
+    </div>
+    <div class="form-box" id="form-box">
+        <form>
+            
+        </form>
+    </div>
+    <tr>
+        <td class="title"></td>
+        <td class="year"></td>
+        <td class="plot"></td>
+        <td class="cast"></td>
+        <td class="runtime"></td>
+        <td class="rating"></td>
+    </tr>
 
     <footer class="footer">
        <div class="social-container">
@@ -43,7 +77,5 @@
           <nav class="twitter-icon"></nav>
         </div>
     </footer>
-
-
 </body>
 </html>
