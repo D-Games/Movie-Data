@@ -34,6 +34,33 @@ let movieData = {
     },
   };
 
+  const movieArray = JSON.parse(localStorage.getItem('MovieList'));
+    console.log(movieArray);
+
+    function addToTable() {
+      const table = document.querySelector('#movie-table tbody');
+    
+    for (let title in movieArray) {
+      const movie = movieArray[title];
+      const row = table.insertRow();
+      const titleCell = row.insertCell();
+      const yearCell = row.insertCell();
+      const plotCell = row.insertCell();
+      const castCell = row.insertCell();
+      const runtimeCell = row.insertCell();
+      const ratingCell = row.insertCell();
+      
+      
+  
+      titleCell.textContent = movie.title;
+      plotCell.textContent = movie.plot;
+      castCell.textContent = movie.cast;
+      runtimeCell.textContent = movie.runtime;
+      ratingCell.textContent = movie.rating;
+      yearCell.textContent = movie.year;
+    }
+  }
+
   function populateTable() {
     const table = document.querySelector('#movie-table tbody');
     
@@ -55,4 +82,12 @@ let movieData = {
       ratingCell.textContent = movie.rating;
       yearCell.textContent = movie.year;
     }
+  }
+
+  function openForm() {
+    document.getElementById('form-box').style.display = 'block';
+  }
+
+  function closeForm() {
+    document.getElementById('form-box').style.display = 'none';
   }

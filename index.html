@@ -16,6 +16,12 @@
           populateTable();
         });
       </script>
+
+      <script>
+        window.addEventListener('load', function(){
+          addToTable();
+        });
+      </script>
 </head>
 <body>
 
@@ -38,6 +44,9 @@
             </ul>
         </div>
     </div>
+    <div class="refresh-container">
+        <button class="refresh" id="refresh" onclick="document.location.reload()">Refresh</button>
+    </div>
     <div class="table-container">
         <table id="movie-table" class="movie-table">
             <thead>
@@ -52,21 +61,94 @@
             </thead>
             <tbody></tbody>
         </table>
-        <button class="add-movie">Add Movie</button>
+        <button class="add-movie" onclick="openForm()">Add Movie</button>
     </div>
     <div class="form-box" id="form-box">
-        <form>
-            
-        </form>
+        <div class="form-title">Enter the movie data below</div>
+        <div class="form-container">
+            <form>
+                <div>
+                    <label for="title">Movie Title</label>
+                    <input type="text" id="title" name="title" placeholder="Fast & Furious: Tokyo Drift" style="width: 300px;">
+                </div>    
+                <div>
+                    <label for="year">Release Year</label>
+                    <input type="number" id="year" name="year" placeholder="Year" value="2023" style="width: 130px">
+                </div>
+                <div>    
+                    <label for="plot">Plot Description</label>
+                    <textarea id="plot" name="plot" placeholder="Description" rows="4" cols="70"></textarea>
+                </div>    
+                <div>    
+                    <label for="cast">Cast</label>
+                    <input type="text" id="cast" name="cast" placeholder="John Snow, Keannu Reaves" style="width: 300px">
+                </div>
+                <div>  
+                    <label for="runtime">Runtime (mins)</label>
+                    <input type="number" id="runtime" name="runtime" placeholder="151" style="width: 130px">
+                </div>
+                <div>    
+                    <label for="rating">Rating</label>
+                    <input type="text" id="rating" name="rating" placeholder="7.1" style="width: 100px">
+                </div>
+                <div class="form-submit">
+                    <button id="submit" class="submit" type="submit">Submit</button> 
+                </div>
+                <div class="form-close">
+                    <button id="close" class="close" onclick="closeForm()">close</button> 
+                </div>
+            </form>
+        </div>
     </div>
-    <tr>
-        <td class="title"></td>
-        <td class="year"></td>
-        <td class="plot"></td>
-        <td class="cast"></td>
-        <td class="runtime"></td>
-        <td class="rating"></td>
-    </tr>
+
+    <script>
+
+        /*const form = document.querySelector('form');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const fd = new FormData(form);
+            
+            const obj = Object.fromEntries(fd);
+
+        })*/
+
+        let movies = [];
+
+        const addMovie = (ev)=>{
+            ev.preventDefault();
+            let movie = {
+                title: document.getElementById('title').value,
+                year: document.getElementById('year').value,
+                plot: document.getElementById('plot').value,
+                cast: document.getElementById('cast').value,
+                runtime: document.getElementById('runtime').value,
+                rating: document.getElementById('rating').value
+            }
+
+            movies.push(movie);
+            document.querySelector('form').reset();
+
+            console.warn('added', {movies} );
+
+            localStorage.setItem('MovieList', JSON.stringify(movies));
+        }
+
+        document.addEventListener ('DOMContentLoaded', ()=>{
+            document.getElementById('submit').addEventListener('click', addMovie);
+            document.getElementById('submit').addEventListener('click', closeForm);
+        });
+
+        function closeForm() {
+            document.getElementById('form-box').style.display = 'none';
+        }
+
+        /*document.addEventListener ('DOMContentLoaded', ()=>{
+            document.getElementById('submit').addEventListener('click', ()=> {
+                document.getElementById('form-box').style.display = 'none';
+            });
+        });*/
+    </script>
 
     <footer class="footer">
        <div class="social-container">
