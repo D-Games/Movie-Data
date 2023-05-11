@@ -91,3 +91,54 @@ let movieData = {
   function closeForm() {
     document.getElementById('form-box').style.display = 'none';
   }
+/*
+  /**
+   * 
+   * @param {HTMLTableElement} table 
+   * @param {number} column The index of the colum to sort
+   * @param {boolean} asc determines if the sorting will be ascending 
+   
+
+
+  function sortTableByColumn(table, column, asc = true){
+    const dirModifier = asc ? 1 : -1;
+    const tBody = table.tBodies[0];
+    const rows = Array.from(tBody.querySelector("tr"));
+
+    const sortedRows = rows.sort ((a, b) => {
+      console.log(a);
+      console.log(b);
+    });
+  }
+
+  sortTableByColumn(document.querySelector("movie-table"), 1);*/
+
+function sortTable(n, evt){
+  var table = document.querySelector('table'),
+    thead = document.querySelector('thead'),
+    tbody = document.querySelector('tbody'),
+    bRows = [...tbody.rows],
+    hData = [...thead.querySelectorAll('th')],
+    desc = false;
+
+  hData.map ( (head) => {
+    if (head != evt ) {
+      head.classList.remove('asc', 'desc');
+    }
+  });
+
+  desc = evt.classList.contains ('asc') ? true : false;
+  evt.classList[desc ? 'remove' : 'add']('asc');
+  evt.classList[desc ? 'add' : 'remove']('desc');
+    
+  tbody.innerHTML = '';
+
+    bRows.sort( (a, b) => {
+      let x = a.getElementsByTagName('td')[n].innerHTML.toLowerCase(),
+          y = b.getElementsByTagName('td')[n].innerHTML.toLowerCase();
+        return desc ? (x < y ? 1 : -1) : (x < y ? -1 : 1);
+    });
+    bRows.map ( (bRow) => {
+      tbody.appendChild(bRow);
+    })
+}

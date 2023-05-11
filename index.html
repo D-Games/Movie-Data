@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/movieData.css">
-    <script src="js/movieData.js"></script>
+
 
     <script>
         window.addEventListener('load', function(){
@@ -24,7 +24,6 @@
       </script>
 </head>
 <body>
-
 
     <div class="header-container" style="flex-direction: column;">
         <div class="inner-header">
@@ -44,19 +43,19 @@
             </ul>
         </div>
     </div>
-    <div class="refresh-container">
-        <button class="refresh" id="refresh" onclick="document.location.reload()">Refresh</button>
-    </div>
     <div class="table-container">
+        <div class="refresh-container">
+            <button class="refresh" id="refresh" onclick="document.location.reload()"><div><img src="img/Refresh button.png" alt="refresh logo"></div>Refresh</button>
+        </div>
         <table id="movie-table" class="movie-table">
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Year</th>
-                    <th>Plot</th>
-                    <th>Cast</th>
-                    <th>Runtime</th>
-                    <th>Rating</th>
+                    <th onclick="sortTable(0, this)">Title<div class="data-sort"></div></th>
+                    <th data-sort onclick="sortTable(1, this)">Year<div class="data-sort"></div></th>
+                    <th data-sort onclick="sortTable(2, this)">Plot<div class="data-sort"></div></th>
+                    <th data-sort onclick="sortTable(3, this)">Cast<div class="data-sort"></div></th>
+                    <th data-sort onclick="sortTable(4, this)">Runtime<div class="data-sort"></div></th>
+                    <th data-sort onclick="sortTable(5, this)">Rating<div class="data-sort"></div></th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -159,5 +158,7 @@
           <nav class="twitter-icon"></nav>
         </div>
     </footer>
+
+    <script src="js/movieData.js"></script>
 </body>
 </html>
